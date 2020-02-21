@@ -3,7 +3,7 @@
 Run file
 ========
 
-When the student have submit his/her code, INGInious starts a new Docker container
+When the student submits his/her code, INGInious starts a new Docker container
 with the right *environment* for the task (as given in the *task.yaml* file). Inside this
 container is launched a script, that we call the *run* script, that you have to provide in the
 directory of your task.
@@ -17,7 +17,7 @@ Naming your `run` script
     inside the *common* folder of a course, and it will be used by default if no run file exists in a task.
 
 The file chosen by INGInious as your *run* file is dependent on the environment. Here is how INGInious resolves
-the best file to run (the resolution ends a soon a one of the rule is respected):
+the best file to run (the resolution ends as soon as one of the rule is respected):
 
 1. If a custom run command was provided, this command is run.
 2. If a file named **`run`** exists in the **task** folder, this file is run.
@@ -113,7 +113,7 @@ The *feedback-result* command sets the submission result of a task, or a problem
         # set the global result
         set_global_result("success")  # Set global result to success
 
-        # set the result of a specific suproblem
+        # set the result of a specific subproblem
         set_problem_result("failed", "q1")  # Set 'q1' subproblem result to failed
 
     .. code-tab:: py
@@ -123,7 +123,7 @@ The *feedback-result* command sets the submission result of a task, or a problem
         # set the global result
         feedback.set_global_result("success")  # Set global result to success
 
-        # set the result of a specific suproblem
+        # set the result of a specific subproblem
         feedback.set_problem_result("failed", "q1")  # Set 'q1' subproblem result to failed
 
     .. code-tab:: bash
@@ -693,7 +693,7 @@ The sub-container is launched with a different user who has read-write accesses 
 subdirectory. Only the changes made in that directory will remain in the main container.
 
 *run_student* is fully configurable; you can change the container image (environment), set new timeouts, new memory
-limits, ... And you can call it as many time as you want.
+limits, ... And you can call it as many times as you want.
 
 Here is the list of the main parameters:
 
@@ -715,14 +715,14 @@ the command to be run in the new container.
 
 More technically, please note that:
 
-- the *run_student* **command** (accesible in bash) proxies stdin, stdout, stderr, most signals and the return value
+- the *run_student* **command** (accessible in bash) proxies stdin, stdout, stderr, most signals and the return value
 - There are special return values:
     - 252 means that the command was killed due to an out-of-memory
     - 253 means that the command timed out
     - 254 means that an error occurred while running the proxy
 
 In Python, two flavours of *run_student* are available: `run` and `run_simple`. The first is a low-level function,
-which allows you to modify most of the behavior of the behavior of the function. The second aims to solve the most used
+which allows you to modify most of the behavior of the function. The second aims to solve the most used
 use case: run a command with a given input, and returns its output. A small description of `run_simple` is available in
 the examples below, please check the API directly for more information.
 
